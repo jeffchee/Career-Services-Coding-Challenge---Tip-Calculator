@@ -1,22 +1,118 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Just the Tip</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Just the Tip</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
 
 
 </head>
 
 <body>
 
+  <!-- 
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col">
+        <hr class="my-4">
+      </div>
+      <div class="col">
+        <h1 class="display-4">Just The Tip!</h1>
+      </div>
+      <div class="col">
+        <hr class="my-4">
+      </div>
+    </div> -->
 
+  <hr class="my-4">
+  <h1 style="text-align: center;">Tip Calculator</h1>
+  <h4 style="text-align: center;"></h4>
+  <hr class="my-4">
 
+  </div>
 
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6 ">
+        <div class="card mx-auto" style="width: 30rem;">
+          <img src="./image/download.png" class="card-img-top" alt="...">
+          <div class="container">
+            <form action="">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">$</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Amount">
+                <div class="input-group-append">
+                  <span class="input-group-text">#</span>
+                </div>
+              </div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+              </div>
+              <div class="row">
+                <div class="col-10">
+                  <label for="customRange3">Tip Percentage</label>
+                  <input type="range" class="custom-range" min="0" max="20" step="0.5" id="customRange3">
+                </div>
+                <div class="col-2">
+                  <h1>#</h1>
+                </div>
+              </div>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch2">
+                <label class="custom-control-label" for="customSwitch2">Toggle this switch element</label>
+              </div>
+              <div class="row">
+                <div class="col-10">
+                  <label for="customRange3">Split between</label>
+                  <input type="range" class="custom-range" min="0" max="20" step="0.5" id="customRange3">
+                </div>
+                <div class="col-2">
+                  <h1>#</h1>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+
+            </form>
+
+            <ul class="list-group list-group-flush">
+              <div class="row">
+                <div class="col-sm-3">
+                  <li class="list-group-item" style=" border: 2px solid red;
+            border-radius: 8px; width:100%">Tip</li>
+                </div>
+                <div class="col-9">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <li class="list-group-item" style=" border: 2px solid red;
+              border-radius: 8px; width:100%">Total</li>
+                </div>
+                <div class="col-9">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <li class="list-group-item" style=" border: 2px solid red;
+                border-radius: 8px; width:100%">Split Total</li>
+                </div>
+                <div class="col-9">
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
+    </div>
 
 
 
@@ -25,14 +121,14 @@
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"></script>
     <script src="tip.js"></script>
 
 </body>
