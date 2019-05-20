@@ -21,21 +21,22 @@
 
   </div>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-3"></div>
-      <div class="col-sm-6 ">
-        <div class="card mx-auto" style="width: 30rem; border: 6px solid black">
-          <img src="./image/Foodimage.jpg" class="card-img-top" alt="...">
-          <h5 style="text-align: center;">Tip Calculator</h5>
-          <!-- colors
+  <!-- colors
  DOrange- #FC8D3E
 teal- #5AC4C2
 red- #F4332A
 lorange - #F6BF64
 -->
 
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-3">
+      </div>
 
+      <div class="col-sm-6 ">
+        <div class="card mx-auto" style="width: 30rem; border: 6px solid black">
+          <img src="./image/Foodimage.jpg" class="card-img-top" alt="...">
+          <h5 style="text-align: center;">Tip Calculator</h5>
 
           <div class="container">
             <form action="" style="border: 1px solid black;">
@@ -45,7 +46,7 @@ lorange - #F6BF64
                     <span class="input-group-text">$</span>
                   </div>
                   <input type="text" class="form-control" aria-label="Amount">
-                  
+
                 </div>
 
                 <!-- added tipChange variable to when toggle on or off can adjust to new format -->
@@ -65,7 +66,7 @@ lorange - #F6BF64
                   </div>
                 </div>
 
-<!-- added splitChange variable to when toggle on or off can adjust to new format -->
+                <!-- added splitChange variable to when toggle on or off can adjust to new format -->
                 <div class="custom-control custom-switch" style="border: 2px solid #F4332A">
                   <input type="checkbox" class="custom-control-input" id="customSwitch2">
                   <label class="custom-control-label" for="customSwitch2">Toggle this switch element</label>
@@ -86,76 +87,63 @@ lorange - #F6BF64
                   style="background-color: #F6BF64; border-color:black">Block level button</button>
               </div>
             </form>
-<!-- must add round up or tell one to pay a little more -->
-js
+            <!-- must add round up or tell one to pay a little more //js-->
+          </div>
 
-<!-- 
-            <div class="card mb-3" style="max-width: 540px;">
-              <div class="row no-gutters">
-                <div class="col-md-4">
-                  <img src="..." class="card-img" alt="...">
-                </div>
-                <div class="col-md-8">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                      additional content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                  </div>
+          <div class="container" style="margin-bottom:14px">
+            <div class="card">
+              <div class="card-header">
+                Featured
+              </div>
+
+              <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight">Total Tax Balance</div>
+
+                <div class="p-2 bd-highlight ">$$</div>
+              </div>
+              <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight">Total Balance </div>
+
+                <div class="p-2 bd-highlight">$$</div>
+              </div>
+              <div class="card-header">
+                Each Pay
+              </div>
+              <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight">Option 1 (equal pay/round up cent)</div>
+                <div class="p-2 bd-highlight">
+                  <span class="badge badge-primary badge-pill" >
+                      <output name="SplitOutputBetween" id="SplitOutputBetween">1</output>
+                  </span>
+                  $$
                 </div>
               </div>
-            </div> -->
-
-            <div class="card" >
-                <div class="card-header">
-                  Featured
+              <div class="d-flex bd-highlight">
+                <div class="p-2 flex-grow-1 bd-highlight">Option 2 (Exact)</div>
+                <div class="p-2 bd-highlight">
+                  <span class="badge badge-primary badge-pill">#</span>
+                  $$
                 </div>
-                <!-- <ul class="list-group list-group-horizontal ">
-                    <li class="list-group-item .flex-fill">Total Balance</li>
-                    <li class="list-group-item .flex-fill">Dapibus ac facilisis in</li>
-                  
-                  </ul>
-                <ul class="list-group list-group-horizontal ">
-                    <li class="list-group-item .flex-fill">Each Pay</li>
-                    <li class="list-group-item .flex-fill">Dapibus ac facilisis in</li>
-
-                  </ul> -->
-
-                  <ul class="list-group list-group-flush" style="border: 2px solid blue">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <li class="list-group-item" style=" border: 2px solid red;
-                    border-radius: 8px; width:100%">Tip</li>
-                        </div>
-                        <div class="col-9">
-                            <li class="list-group-item" style=" border: 2px solid red;
-                            border-radius: 8px; width:100%">Tip</li>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <li class="list-group-item" style=" border: 2px solid red;
-                      border-radius: 8px; width:100%">Total</li>
-                        </div>
-                        <div class="col-9">
-                          
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <li class="list-group-item" style=" border: 2px solid red;
-                        border-radius: 8px; width:100%">Split Total</li>
-                        </div>
-                        <div class="col-9">
-                        </div>
-                      </div>
-                    </ul>
+                <div class="p-2 bd-highlight">
+                  <span class="badge badge-primary badge-pill">#</span>
+                  $$
+                </div>
               </div>
+            
+            </div>
+
+            <!-- button layout  to show how much how many people need to pay or same amount  -->
+            <!-- idea -->
+
+            <!-- subtract a meal Extra -->
+
 
           </div>
         </div>
       </div>
-      <div class="col-sm-3"></div>
+
+      <div class="col-sm-3">
+      </div>
     </div>
 
     <hr class="my-4">
