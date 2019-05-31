@@ -35,20 +35,20 @@ lorange - #F6BF64
 
           <div class="container">
             
-            <form action="" style="border: 1px solid #F4332A;">
+            <form role="form" style="border: 1px solid #F4332A;">
               <div class="container" style="margin-top:14px; margin-bottom: 14px">
                 <div class="input-group mb-3 input-group-lg" style="border: 2px solid #FC8D3E">
                   <div class="input-group-prepend">
                     <span class="input-group-text">$</span>
                   </div>
-                  <input type="text" class="form-control userInput" aria-label="Amount">
+                  <input type="number" class="form-control " id="userInput" aria-label="Amount">
 
                 </div>
 
                 <!-- added tipChange variable to when toggle on or off can adjust to new format -->
 
                 <div class="custom-control custom-switch" style="border: 2px solid#F4332A">
-                  <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                  <input type="checkbox" class="custom-control-input " id="customSwitch1">
                   <label class="custom-control-label" for="customSwitch1">Toggle this switch element to have custom
                     Inputs</label>
                 </div>
@@ -56,12 +56,11 @@ lorange - #F6BF64
                 <div class="row">
                   <label for="customRange3" style="margin:5px; margin-left:14px;">Tip Percentage</label>
                   <div class="col-10 tipChange">
-                    <input type="range" class="custom-range" min="0" max="20" step="0.5" id="tipRange"
+
+
+
+                    <input type="range" class="custom-range form-control" min="0" max="20" step="0.5" id="tipRange"
                       style="margin-bottom: 8px;">
-
-                    <!-- oninput="tipOutputPercentage.value = tipInputPercentage.value" -->
-
-
 
                   </div>
                   <div class="col-2">
@@ -77,15 +76,18 @@ lorange - #F6BF64
                 <div class="row">
                   <label for="customRange3" style="margin:5px;margin-left:14px;">Split between</label>
                   <div class="col-10 ">
-                    <input type="range" class="custom-range" min="1" max="10" step="1" id="splitInputBetween"
-                      oninput="splitOutputBetween.value = splitInputBetween.value" value="2"
-                      style="margin-bottom: 8px;">
+                    <input type="range" class="custom-range form-control" min="1" max="10" value="2" step="1" id="splitInput" style="margin-bottom: 8px;">
                   </div>
                   <div class="col-2">
-                    <output name="splitOutputBetween" id="splitOutputBetween">2</output>
+                      <p> <span id="splitOutput"></span></p>
+                   
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block"
+
+
+                <button type="button" onclick="alert('Hello world!')"><i class="fa fa-trash"></i></button>
+
+                <button type="submit" class="btn btn-primary btn-lg btn-block" id="addTip"
                   style="background-color: #F6BF64; border-color:black">Block level button</button>
               </div>
             </form>
