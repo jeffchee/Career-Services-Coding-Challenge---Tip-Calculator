@@ -2,33 +2,72 @@ $(document).ready(function () {
 
 
 
+    var config = {
+        apiKey: "AIzaSyCweVwtNwaWEU-cdT3IIkwKEi06VP3Za0o",
+        authDomain: "tip-calculator-a3e46.firebaseapp.com",
+        databaseURL: "https://tip-calculator-a3e46.firebaseio.com",
+        projectId: "tip-calculator-a3e46",
+        storageBucket: "tip-calculator-a3e46.appspot.com",
+    }
+    
+    firebase.initializeApp(config);
+    
+    var database = firebase.database();
+    
+    var userInput = "";
+    var tipInput = "";
+    var splitInput ="";
 
-    var userInput = document.getElementById("userInput");
 
-    var tipRange = document.getElementById("tipRange");
-    var tipOutput = document.getElementById("tipOutput");
+    $("#addTip").on("click", function () {
+
+        userInput = $("#userInput").val().trim();
+        tipInput = $("#tipInput").val().trim();
+        splitInput = $("#splitInput").val().trim();
+
+
+        firebase.database().ref().set({
+            userInput: userInput,
+            tipInput: tipInput,
+            splitInput: splitInput,
+        })
+    })
+
+firebase.database().ref().on("value",function(snapshot){
+    $("#userOutput").html(snapshot.val().userInput);
+    $("#tipOutput").html(snapshot.val().tipInput);
+    $("#splitOutput").html(snapshot.val().splitInput);
+
+})
+
+
+    // var userInput = document.getElementById("userInput");
+
+    var tipInput = document.getElementById("tipInput");
     var splitInput = document.getElementById("splitInput");
-    var splitOutput = document.getElementById("splitOutput");
 
-    var tipRangeValue = tipRange.value
+    // var splitOutput = document.getElementById("splitOutput");
+    // var tipOutput = document.getElementById("tipOutput");
+    
+    var tipInputValue = tipInput.value
     var splitInputValue = splitInput.value
     var userInputValue = userInput.value
 
-    var split = "";
-    var range = "";
+    // var split = "";
+    // var Input = "";
 
-    console.log(tipRangeValue);
+    console.log(tipInputValue);
     console.log(splitInputValue);
     console.log(userInputValue);
 
-    tipOutput.innerHTML = tipRangeValue;
+    tipOutput.innerHTML = tipInputValue;
     splitOutput.innerHTML = splitInputValue;
 
-    tipRange.oninput = function () {
+    tipInput.oninput = function () {
         tipOutput.innerHTML = this.value;
-        this.range = tipOutput.innerHTML;
-        range = this.range
-        console.log("tip percentage is :" + range);
+        this.Input = tipOutput.innerHTML;
+        Input = this.Input
+        console.log("tip percentage is :" + Input);
 
     }
 
@@ -37,18 +76,10 @@ $(document).ready(function () {
         this.split = splitOutput.innerHTML;
         split = this.split
         console.log("split between " + split + " people");
-        return split;
+        
     }
 
 
-
-    $("#addTip").on("click", function () {
-
-
-        console.log(splitInput);
-
-        
-    })
 
     // 100 x % = X
     // X+100 = Y
@@ -68,14 +99,6 @@ $(document).ready(function () {
 
     // toggle1 is selected, it needs to wait for number to be inputted first before finishing
     // reminder that something is missing
-
-
-
-
-
-
-
-
 
 
 
