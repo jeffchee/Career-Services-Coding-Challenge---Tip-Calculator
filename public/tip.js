@@ -34,9 +34,9 @@ $(document).ready(function () {
     })
 
 firebase.database().ref().on("value",function(snapshot){
-    $("#userOutput").html(snapshot.val().userInput);
-    $("#tipOutput").html(snapshot.val().tipInput);
-    $("#splitOutput").html(snapshot.val().splitInput);
+    $("#userOutputFeature").html(snapshot.val().userInput);
+    $("#tipOutputFeature").html(snapshot.val().tipInput);
+    $("#splitOutputFeature").html(snapshot.val().splitInput);
 
 })
 
@@ -62,6 +62,9 @@ firebase.database().ref().on("value",function(snapshot){
 
     tipOutput.innerHTML = tipInputValue;
     splitOutput.innerHTML = splitInputValue;
+
+
+    // when user changes the range , the numbers will change
 
     tipInput.oninput = function () {
         tipOutput.innerHTML = this.value;
