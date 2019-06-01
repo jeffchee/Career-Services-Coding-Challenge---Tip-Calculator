@@ -1,7 +1,5 @@
 $(document).ready(function () {
 
-
-
     var config = {
         apiKey: "AIzaSyCweVwtNwaWEU-cdT3IIkwKEi06VP3Za0o",
         authDomain: "tip-calculator-a3e46.firebaseapp.com",
@@ -9,14 +7,14 @@ $(document).ready(function () {
         projectId: "tip-calculator-a3e46",
         storageBucket: "tip-calculator-a3e46.appspot.com",
     }
-    
+
     firebase.initializeApp(config);
-    
+
     var database = firebase.database();
-    
+
     var userInput = "";
     var tipInput = "";
-    var splitInput ="";
+    var splitInput = "";
 
 
     $("#addTip").on("click", function () {
@@ -24,22 +22,48 @@ $(document).ready(function () {
         userInput = $("#userInput").val().trim();
         tipInput = $("#tipInput").val().trim();
         splitInput = $("#splitInput").val().trim();
+        totalTaxOutput = "";
+        totalBalance = "";
+        splitBetween = "";
+
+        if (userInput, tipInput, splitInput) {
+
+            totalTaxOutput = parseFloat(userInput) * (parseFloat(tipInput)/(100));
+            console.log(totalTaxOutput);
+            totalBalance = parseFloat(userInput) + parseFloat(totalTaxOutput);
+            console.log(totalBalance);
+            splitBetween = (parseFloat(totalBalance) / parseInt(splitInput));
+            console.log(splitBetween);
+        } else {
+            return error;
+        }
+
 
 
         firebase.database().ref().set({
             userInput: userInput,
             tipInput: tipInput,
             splitInput: splitInput,
+            totalTaxOutput: totalTaxOutput,
+            totalBalance: totalBalance,
+            splitBetween: splitBetween
+
         })
+
+    
+        solve();
+
     })
 
-firebase.database().ref().on("value",function(snapshot){
-    $("#userOutputFeature").html(snapshot.val().userInput);
-    $("#tipOutputFeature").html(snapshot.val().tipInput);
-    $("#splitOutputFeature").html(snapshot.val().splitInput);
-
-})
-
+    firebase.database().ref().on("value", function (snapshot) {
+        $("#userOutputFeature").html(snapshot.val().userInput);
+        $("#tipOutputFeature").html(snapshot.val().tipInput);
+        $("#splitOutputFeature").html(snapshot.val().splitInput);
+        $("#splitOutputFinal").html(snapshot.val().splitInput);
+        $("#totalTaxOutput").text(snapshot.val().totalTaxOutput);
+        $("#totalBalance").text(snapshot.val().totalBalance);
+        $("#splitBetween").text(snapshot.val().splitBetween);
+    })
 
     // var userInput = document.getElementById("userInput");
 
@@ -48,7 +72,7 @@ firebase.database().ref().on("value",function(snapshot){
 
     // var splitOutput = document.getElementById("splitOutput");
     // var tipOutput = document.getElementById("tipOutput");
-    
+
     var tipInputValue = tipInput.value
     var splitInputValue = splitInput.value
     var userInputValue = userInput.value
@@ -63,15 +87,18 @@ firebase.database().ref().on("value",function(snapshot){
     tipOutput.innerHTML = tipInputValue;
     splitOutput.innerHTML = splitInputValue;
 
-
     // when user changes the range , the numbers will change
+
+
+
+    var tip = "";
+    var split = "";
 
     tipInput.oninput = function () {
         tipOutput.innerHTML = this.value;
-        this.Input = tipOutput.innerHTML;
-        Input = this.Input
-        console.log("tip percentage is :" + Input);
-
+        this.tip = tipOutput.innerHTML;
+        tip = this.tip
+        console.log("tip percentage is :" + tip);
     }
 
     splitInput.oninput = function () {
@@ -79,8 +106,8 @@ firebase.database().ref().on("value",function(snapshot){
         this.split = splitOutput.innerHTML;
         split = this.split
         console.log("split between " + split + " people");
-        
     }
+
 
 
 
