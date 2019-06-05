@@ -36,7 +36,7 @@ $(document).ready(function () {
         optionTwoTotal="";
 
         function rounding(x) {
-           return x.toFixed(2);
+           return x.toFixed(3);
         }
 
         if (userInput, tipInput, splitInput) {
