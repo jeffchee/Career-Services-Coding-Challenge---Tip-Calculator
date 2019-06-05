@@ -16,6 +16,13 @@ $(document).ready(function () {
     var tipInput = "";
     var splitInput = "";
 
+    $("#customSwitch").on("click", function () {
+
+
+
+
+    })
+
 
     $("#addTip").on("click", function () {
 
@@ -25,18 +32,29 @@ $(document).ready(function () {
         totalTaxOutput = "";
         totalBalance = "";
         splitBetween = "";
+        optionOneTotal = ""; 
+        optionTwoTotal="";
+
+        function rounding(x) {
+           return x.toFixed(2);
+        }
 
         if (userInput, tipInput, splitInput) {
 
-            totalTaxOutput = parseFloat(userInput) * (parseFloat(tipInput)/(100));
+            totalTaxOutput = parseFloat(userInput) * (parseFloat(tipInput) / (100));
+            totalTaxOutput = rounding(totalTaxOutput);
             console.log(totalTaxOutput);
             totalBalance = parseFloat(userInput) + parseFloat(totalTaxOutput);
+            totalBalance = rounding(totalBalance);
             console.log(totalBalance);
             splitBetween = (parseFloat(totalBalance) / parseInt(splitInput));
+            splitBetween = rounding(splitBetween);
             console.log(splitBetween);
         } else {
             return error;
-        }
+        };
+
+
 
 
 
@@ -46,14 +64,21 @@ $(document).ready(function () {
             splitInput: splitInput,
             totalTaxOutput: totalTaxOutput,
             totalBalance: totalBalance,
-            splitBetween: splitBetween
-
+            splitBetween: splitBetween,
+            optionOneTotal: optionOneTotal,
+            optionTwoTotal: optionTwoTotal,
         })
 
-    
-        solve();
+
+
+        
 
     })
+
+
+
+
+    // need to find out the way to split and roundup for the figures and to make it display the number of people and ammount each people should owe.
 
     firebase.database().ref().on("value", function (snapshot) {
         $("#userOutputFeature").html(snapshot.val().userInput);
