@@ -24,6 +24,7 @@ $(document).ready(function () {
     })
 
 
+
     $("#addTip").on("click", function () {
 
         userInput = $("#userInput").val().trim();
@@ -32,31 +33,37 @@ $(document).ready(function () {
         totalTaxOutput = "";
         totalBalance = "";
         splitBetween = "";
-        optionOneTotal = ""; 
-        optionTwoTotal="";
+        optionOneTotal = "";
+        optionTwoTotal = "";
 
         function rounding(x) {
-           return x.toFixed(3);
+            return x.toFixed(2);
         }
 
-        if (userInput, tipInput, splitInput) {
+        totalTaxOutput = parseFloat(userInput) * (parseFloat(tipInput) / (100));
+        totalTaxOutput = rounding(totalTaxOutput);
+        console.log(totalTaxOutput);
+        totalBalance = parseFloat(userInput) + parseFloat(totalTaxOutput);
+        totalBalance = rounding(totalBalance);
+        console.log(totalBalance);
+        splitBetween = (parseFloat(totalBalance) / parseInt(splitInput));
+        splitBetween = rounding(splitBetween);
+        console.log(splitBetween);
+        optionOneTotal = parseFloat(splitInput) * parseFloat(splitBetween);
+        optionOneTotal = rounding(optionOneTotal);
+        console.log(optionOneTotal)
 
-            totalTaxOutput = parseFloat(userInput) * (parseFloat(tipInput) / (100));
-            totalTaxOutput = rounding(totalTaxOutput);
-            console.log(totalTaxOutput);
-            totalBalance = parseFloat(userInput) + parseFloat(totalTaxOutput);
-            totalBalance = rounding(totalBalance);
-            console.log(totalBalance);
-            splitBetween = (parseFloat(totalBalance) / parseInt(splitInput));
+        // bug fix for option 1 equal pay rounding up
+
+        var cent1 = (splitInput / 100);
+        if (totalBalance > optionOneTotal) {
+            var optionOneTotal = optionOneTotal + cent1;
+            optionOneTotal = rounding(optionOneTotal);
+            var splitBetween = optionOneTotal / splitInput;
             splitBetween = rounding(splitBetween);
-            console.log(splitBetween);
-        } else {
-            return error;
-        };
-
-
-
-
+        } 
+        console.log(splitBetween);
+        console.log(optionOneTotal)
 
         firebase.database().ref().set({
             userInput: userInput,
@@ -69,13 +76,22 @@ $(document).ready(function () {
             optionTwoTotal: optionTwoTotal,
         })
 
-
-
-        
-
     })
 
 
+
+
+    // function option2 (TB, splitBetween){
+    //     for (var i = splitBetween; splitBetween>0; i--) {
+
+    //         if(TB%i===0){
+    //             var 
+    //         } else {
+    //             return error;
+    //         }
+
+    //     }
+    // }
 
 
     // need to find out the way to split and roundup for the figures and to make it display the number of people and ammount each people should owe.
@@ -84,10 +100,11 @@ $(document).ready(function () {
         $("#userOutputFeature").html(snapshot.val().userInput);
         $("#tipOutputFeature").html(snapshot.val().tipInput);
         $("#splitOutputFeature").html(snapshot.val().splitInput);
-        $("#splitOutputFinal").html(snapshot.val().splitInput);
         $("#totalTaxOutput").text(snapshot.val().totalTaxOutput);
         $("#totalBalance").text(snapshot.val().totalBalance);
         $("#splitBetween").text(snapshot.val().splitBetween);
+        $("#splitOutputFinal").html(snapshot.val().splitInput);
+        $("#option1TotalFinal").text(snapshot.val().optionOneTotal);
     })
 
     // var userInput = document.getElementById("userInput");
