@@ -1,0 +1,24 @@
+{
+  "name": "career-services-coding-challenge---tip-calculator",
+  "version": "1.0.0",
+  "description": "Just the tip!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffchee/Career-Services-Coding-Challenge---Tip-Calculator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffchee/Career-Services-Coding-Challenge---Tip-Calculator/issues"
+  },
+  "homepage": "https://github.com/jeffchee/Career-Services-Coding-Challenge---Tip-Calculator#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  }
+}
