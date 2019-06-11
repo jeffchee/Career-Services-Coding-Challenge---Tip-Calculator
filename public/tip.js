@@ -55,15 +55,17 @@ $(document).ready(function () {
 
         // bug fix for option 1 equal pay rounding up
 
-        var cent1 = (splitInput / 100);
+        var cent1 = (parseFloat(splitInput) / 100);
         if (totalBalance > optionOneTotal) {
-            var optionOneTotal = optionOneTotal + cent1;
+            var optionOneTotal = parseFloat(optionOneTotal) + parseFloat(cent1);
             optionOneTotal = rounding(optionOneTotal);
-            var splitBetween = optionOneTotal / splitInput;
+            var splitBetween = (parseFloat(optionOneTotal) / splitInput);
             splitBetween = rounding(splitBetween);
-        } 
-        console.log(splitBetween);
-        console.log(optionOneTotal)
+        }
+
+        // option 2 split between for exact pay
+
+
 
         firebase.database().ref().set({
             userInput: userInput,
