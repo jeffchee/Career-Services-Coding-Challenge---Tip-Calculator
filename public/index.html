@@ -22,173 +22,177 @@ teal- #5AC4C2
 red- #F4332A
 lorange - #F6BF64
 -->
-  <hr class="my-2">
 
-  <div class="container">
-    <div class="row">
+  <div class="center">
+   
 
-      <div class="col-sm-6 ">
-        <div class="card mx-auto" style="width: 30rem; border: 6px solid black">
-          <img src="./image/Foodimage.jpg" class="card-img-top" alt="...">
-          <span style="text-align: center; margin:5px">Tip Calculator</span>
+    <div class="container" style="transform: scale(1.1);" >
+        <hr class="my-2">
+      <div class="row">
 
-          <div class="container">
+        <div class="col-sm-6 ">
+          <div class="card mx-auto" style="width: 30rem; border: 6px solid black">
+            <img src="./image/Foodimage.jpg" class="card-img-top" alt="...">
+            <span style="text-align: center; margin:5px">Tip Calculator</span>
 
-            <form role="form" style="border: 1px solid #F4332A;">
-              <div class="container" style="margin-top:14px; margin-bottom: 14px">
-                <div class="input-group mb-3 input-group-lg" style="border: 2px solid #FC8D3E">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text ">$</span>
-                  </div>
-                  <input type="number" class="form-control input-group-lg" id="userInput" step="0.01" aria-label="Amount">
+            <div class="container">
 
-                </div>
-
-                <!-- added tipChange variable to when toggle on or off can adjust to new format -->
-
-                <div class="custom-control custom-switch" style="border: 2px solid#F4332A">
-                  <input type="checkbox" class="custom-control-input " id="customSwitch">
-                  <label class="custom-control-label" for="customSwitch">Custom Inputs</label>
-                </div>
-                <div class="container">
-                  <div class="row">
-                    <label for="customRange3" style="margin:5px; margin-left:14px;">Tip Percentage</label>
-                    <div class="col-10 tipChange">
-
-                      <input type="range" class="custom-range form-control" min="0" max="30" step="0.5" id="tipInput"
-                        style="margin-bottom: 8px;">
-
+              <form role="form" style="border: 2px solid #F4332A;">
+                <div class="container" style="margin-top:14px; margin-bottom: 14px">
+                  <div class="input-group mb-3 input-group-lg" style="border: 2px solid #FC8D3E">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text ">$</span>
                     </div>
-                    <div class="col-2">
-                      <div id="tipOutput"></div>
+                    <input type="number" class="form-control input-group-lg" id="userInput" step="0.01"
+                      aria-label="Amount">
 
-                    </div>
                   </div>
 
-                  <!-- added splitChange variable to when toggle on or off can adjust to new format -->
+                  <!-- added tipChange variable to when toggle on or off can adjust to new format -->
 
-                  <div class="row">
-                    <label for="customRange3" style="margin:5px;margin-left:14px;">Split between</label>
-                    <div class="col-10 ">
-                      <input type="range" class="custom-range form-control " min="1" max="10" value="2" step="1"
-                        id="splitInput" style="margin-bottom: 8 px">
-                    </div>
-                    <div class="col-2">
-                      <div id="splitOutput"></div>
+                  
+                  
+                  <div class="container">
+                    <div class="row">
+                      <label for="customRange3" style="margin:5px; margin-left:14px;">Tip Percentage</label>
+                      <div class="col-10 tipChange">
 
+                        <input type="range" class="custom-range form-control" min="0" max="40" step="0.5" id="tipInput"
+                          style="margin-bottom: 8px;">
+
+                      </div>
+                      <div class="col-2">
+                        <div id="tipOutput"></div>
+
+                      </div>
                     </div>
+
+                    <!-- added splitChange variable to when toggle on or off can adjust to new format -->
+
+                    <div class="row">
+                      <label for="customRange3" style="margin:5px;margin-left:14px;">Split between</label>
+                      <div class="col-10 ">
+                        <input type="range" class="custom-range form-control " min="1" max="20" value="2" step="1"
+                          id="splitInput" style="margin-bottom: 8 px">
+                      </div>
+                      <div class="col-2">
+                        <div id="splitOutput"></div>
+
+                      </div>
+                    </div>
+
+                    <!-- <button type="button" onclick="alert('Hello world!')"><i class="fa fa-trash"></i></button> -->
+
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="addTip"
+                      style="background-color: #F6BF64; border-color:black; margin-top:7px">Block level button</button>
                   </div>
+              </form>
+              <!-- must add round up or tell one to pay a little more //js-->
+            </div>
 
-                  <!-- <button type="button" onclick="alert('Hello world!')"><i class="fa fa-trash"></i></button> -->
-
-                  <button type="submit" class="btn btn-primary btn-lg btn-block" id="addTip"
-                    style="background-color: #F6BF64; border-color:black; margin-top:7px">Block level button</button>
-                </div>
-            </form>
-            <!-- must add round up or tell one to pay a little more //js-->
           </div>
-
         </div>
       </div>
-    </div>
 
-    <div class="col-sm-5">
-      <div class="container" style="margin-bottom:14px">
-        <div class="card">
-          <div class="card-header">
-            Featured
-          </div>
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">User Input</div>
-            <div class="p-2 bd-highlight ">$ <span id="userOutputFeature"></span></div>
-          </div>
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">Tip Input</div>
-            <div class="p-2 bd-highlight ">% <span id="tipOutputFeature"></span></div>
-          </div>
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">Split Between</div>
-            <div class="p-2 bd-highlight "><span id="splitOutputFeature"></span> People</div>
-          </div>
-
-          <div class="card-header">
-            Balance
-          </div>
-
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">Total Tax Balance</div>
-
-            <div class="p-2 bd-highlight ">$<span id="totalTaxOutput"></span></div>
-          </div>
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">Total Balance </div>
-
-            <div class="p-2 bd-highlight">$<span id="totalBalance"></span></div>
-          </div>
-          <div class="card-header">
-            Each Pay
-          </div>
-
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">Option 1 (equal pay/round up cent)</div>
-            <div class="p-2 bd-highlight">
-              <span class="badge badge-primary badge-pill">
-                <output id="splitOutputFinal"></output>
-              </span>
-              $<span id="splitBetween"></span>
+      <div class="col-sm-5">
+        
+        <div class="container" style="margin-bottom:14px; ">
+          <div class="card" style="border: 6px solid black">
+            <div class="card-header" style="background-color:5AC4C2; color:white">
+              Featured
             </div>
-          </div>
-
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">Option 1 Total Balance</div>
-            <div class="p-2 bd-highlight">
-              $ <span id="option1TotalFinal"></span>
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">User Input</div>
+              <div class="p-2 bd-highlight ">$ <span id="userOutputFeature"></span></div>
             </div>
-          </div>
-
-          <hr class="my-2">
-
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">Option 2 (Exact)</div>
-            <div class="p-2 bd-highlight">
-              <span class="badge badge-primary badge-pill">
-                <output id="optionTwoB"></output>
-              </span>
-              $ <span id="optionTwoSplitB"></span>
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">Tip Input</div>
+              <div class="p-2 bd-highlight ">% <span id="tipOutputFeature"></span></div>
             </div>
-            <div class="p-2 bd-highlight">
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">Split Between</div>
+              <div class="p-2 bd-highlight "><span id="splitOutputFeature"></span> People</div>
+            </div>
+
+            <div class="card-header" style="background-color: FC8D3E; color:white">
+              Balance
+            </div>
+
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">Total Tax Balance</div>
+
+              <div class="p-2 bd-highlight ">$<span id="totalTaxOutput"></span></div>
+            </div>
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">Total Balance </div>
+
+              <div class="p-2 bd-highlight">$<span id="totalBalance"></span></div>
+            </div>
+            <div class="card-header" style="background-color: F4332A; color:white">
+              Each Pay
+            </div>
+
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">Option 1 (Equal Pay/Round Up)</div>
+              <div class="p-2 bd-highlight">
                 <span class="badge badge-primary badge-pill">
-                    <output id="optionTwoA"></output>
-                  </span>
-                  $<span id="optionTwoSplitA"></span>
+                  <output id="splitOutputFinal"></output>
+                </span>
+                $<span id="splitBetween"></span>
+              </div>
             </div>
+
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">Option 1 Total Balance</div>
+              <div class="p-2 bd-highlight">
+                $ <span id="option1TotalFinal"></span>
+              </div>
+            </div>
+
+            <hr class="my-2" style="background-color: F6BF64">
+
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">Option 2 (Exact)</div>
+              <div class="p-2 bd-highlight">
+                <span class="badge badge-primary badge-pill">
+                  <output id="optionTwoB"></output>
+                </span>
+                $ <span id="optionTwoSplitB"></span>
+              </div>
+              <div class="p-2 bd-highlight">
+                <span class="badge badge-primary badge-pill">
+                  <output id="optionTwoA"></output>
+                </span>
+                $<span id="optionTwoSplitA"></span>
+              </div>
+            </div>
+
+            <div class="d-flex bd-highlight">
+              <div class="p-2 flex-grow-1 bd-highlight">Option 2 Total Balance</div>
+              <div class="p-2 bd-highlight">
+                $<span id="option2TotalFinal"></span>
+              </div>
+            </div>
+
           </div>
 
-          <div class="d-flex bd-highlight">
-            <div class="p-2 flex-grow-1 bd-highlight">Option 2 Total Balance</div>
-            <div class="p-2 bd-highlight">
-              $<span id="option2TotalFinal"></span>
-            </div>
-          </div>
+          <div id="splitOutputBetween"></div>
+          <!-- button layout  to show how much how many people need to pay or same amount  -->
+          <!-- idea -->
+
+          <!-- subtract a meal Extra -->
+
 
         </div>
-
-        <div id="splitOutputBetween"></div>
-        <!-- button layout  to show how much how many people need to pay or same amount  -->
-        <!-- idea -->
-
-        <!-- subtract a meal Extra -->
-
-
       </div>
+
+
     </div>
-
-
-
+    <hr class="my-2">
 
   </div>
-  </div>
-  <hr class="my-2">
+
+
 
   <!-- option to round up or down -->
 

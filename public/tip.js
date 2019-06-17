@@ -28,30 +28,7 @@ $(document).ready(function () {
 
     })
 
-    // function addingNewUserInput() {
-    //     var tipInput = "";
-    //     var splitInput = "";
 
-    //     var y = document.createElement("p");
-    //     y.innerHTML = "Tip Percentage";
-    //     document.getElementById("prac").appendChild(y)
-
-    //     var x = document.createElement("INPUT");
-    //     x.setAttribute("type", "number");
-    //     x.setAttribute("value", this);
-    //     x.setAttribute("id", tipInput)
-    //     document.getElementById("prac").appendChild(x);
-    //     console.log("it registered");
-    //     console.log(tipInput);
-
-
-
-
-
-
-    //     // tipInput = $("#tipInput").val().trim();
-    //     // splitInput = $("#splitInput").val().trim();
-    // }
 
 
 
@@ -98,7 +75,7 @@ $(document).ready(function () {
 
         // bug fix for option 1 equal pay rounding up
         // --------------------------------------------------can make this a function for checking to make it clearer
-
+// --
        
 
         if (totalBalance % splitInput === 0) {
@@ -127,6 +104,8 @@ $(document).ready(function () {
                 var optionTwoB = parseInt(splitInput) - parseInt(optionTwoA);
                 var optionTwoSplitB = parseFloat(splitBetween);
                 optionTwoSplitB = rounding(optionTwoSplitB);
+                console.log("running if");
+
 
             } else {
                 var splitBetween = parseFloat(splitBetween) - 0.01;
@@ -144,6 +123,11 @@ $(document).ready(function () {
                 var optionTwoB = parseInt(splitInput) - parseInt(optionTwoA);
                 var optionTwoSplitB = parseFloat(splitBetween);
                 optionTwoSplitB = rounding(optionTwoSplitB);
+                console.log("running else");
+
+                if (optionTwoB ===0){
+                    optionTwoSplitB = 0;
+                }
             }
 
         }
@@ -185,7 +169,7 @@ $(document).ready(function () {
             splitInput: splitInput,
             totalTaxOutput: totalTaxOutput,
             totalBalance: totalBalance,
-            splitBetween: splitBetween,
+            splitBetween: optionTwoSplitA,
             optionOneTotal: optionOneTotal,
             optionTwoTotal: optionTwoTotal,
             optionTwoSplitA: optionTwoSplitA,
