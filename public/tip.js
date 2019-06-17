@@ -17,11 +17,41 @@ $(document).ready(function () {
     var splitInput = "";
 
     $("#customSwitch").on("click", function () {
-
-
-
+        var x = document.getElementById("newUserInputs");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            $("#prac").empty();
+        } else {
+            x.style.display = "none";
+            // addingNewUserInput();
+        }
 
     })
+
+    // function addingNewUserInput() {
+    //     var tipInput = "";
+    //     var splitInput = "";
+
+    //     var y = document.createElement("p");
+    //     y.innerHTML = "Tip Percentage";
+    //     document.getElementById("prac").appendChild(y)
+
+    //     var x = document.createElement("INPUT");
+    //     x.setAttribute("type", "number");
+    //     x.setAttribute("value", this);
+    //     x.setAttribute("id", tipInput)
+    //     document.getElementById("prac").appendChild(x);
+    //     console.log("it registered");
+    //     console.log(tipInput);
+
+
+
+
+
+
+    //     // tipInput = $("#tipInput").val().trim();
+    //     // splitInput = $("#splitInput").val().trim();
+    // }
 
 
 
@@ -33,8 +63,13 @@ $(document).ready(function () {
         totalTaxOutput = "";
         totalBalance = "";
         splitBetween = "";
+        
         optionOneTotal = "";
         optionTwoTotal = "";
+        optionTwoA = "";
+        optionTwoB = "";
+        optionTwoSplitA = "";
+        optionTwoSplitB = "";
 
         function rounding(x) {
             return x.toFixed(2);
@@ -43,27 +78,104 @@ $(document).ready(function () {
         totalTaxOutput = parseFloat(userInput) * (parseFloat(tipInput) / (100));
         totalTaxOutput = rounding(totalTaxOutput);
         console.log(totalTaxOutput);
+
         totalBalance = parseFloat(userInput) + parseFloat(totalTaxOutput);
         totalBalance = rounding(totalBalance);
         console.log(totalBalance);
+
+        var optionTwoTotal = totalBalance;
+
         splitBetween = (parseFloat(totalBalance) / parseInt(splitInput));
         splitBetween = rounding(splitBetween);
+        splitBetween = splitBetween
         console.log(splitBetween);
-        optionOneTotal = parseFloat(splitInput) * parseFloat(splitBetween);
-        optionOneTotal = rounding(optionOneTotal);
+
+        optionOneTotal = parseInt(splitInput) * parseFloat(splitBetween);
+
         console.log(optionOneTotal)
 
+        // cannot round here because otherwise it will defeat the purpose of trying to see if the totalbalance and the optionOneTotal is different or not.
+
         // bug fix for option 1 equal pay rounding up
+        // --------------------------------------------------can make this a function for checking to make it clearer
+
+       
+
+        if (totalBalance % splitInput === 0) {
+            var optionTwoA = splitInput;
+            var optionTwoSplitA = splitBetween;
+            var optionTwoB = 0;
+            var optionTwoSplitB = 0;
+
+            
+        } else {
+
+            var balance = splitInput * splitBetween;
+
+            if (totalBalance > balance) {
+
+                var difference = totalBalance - balance;
+                difference = rounding(difference);
+
+                console.log(difference);
+                var number = parseFloat(difference) * 100;
+                console.log(number);
+                // whatever the number will be will be the one that is going to need that 1 cent
+                var optionTwoA = parseInt(number);
+                var optionTwoSplitA = parseFloat(splitBetween) + 0.01;
+                optionTwoSplitA = rounding(optionTwoSplitA);
+                var optionTwoB = parseInt(splitInput) - parseInt(optionTwoA);
+                var optionTwoSplitB = parseFloat(splitBetween);
+                optionTwoSplitB = rounding(optionTwoSplitB);
+
+            } else {
+                var splitBetween = parseFloat(splitBetween) - 0.01;
+                var balance = splitInput * splitBetween;
+                var difference = totalBalance - balance;
+                difference = rounding(difference);
+
+                console.log(difference);
+                var number = parseFloat(difference) * 100;
+                console.log(number);
+                
+                var optionTwoA = parseInt(number);
+                var optionTwoSplitA = parseFloat(splitBetween) + 0.01;
+                optionTwoSplitA = rounding(optionTwoSplitA);
+                var optionTwoB = parseInt(splitInput) - parseInt(optionTwoA);
+                var optionTwoSplitB = parseFloat(splitBetween);
+                optionTwoSplitB = rounding(optionTwoSplitB);
+            }
+
+        }
+
+        console.log("optionTwoA = " + optionTwoA)
+        console.log("optionTwoSplitA = " + optionTwoSplitA)
+        console.log("optionTwoB = " + optionTwoB)
+        console.log("optionTwoSplitB = " + optionTwoSplitB)
+
 
         var cent1 = (parseFloat(splitInput) / 100);
+
         if (totalBalance > optionOneTotal) {
-            var optionOneTotal = parseFloat(optionOneTotal) + parseFloat(cent1);
-            optionOneTotal = rounding(optionOneTotal);
-            var splitBetween = (parseFloat(optionOneTotal) / splitInput);
+            console.log("fixing optionOneTotal")
+            var optionOneFixTotal = parseFloat(optionOneTotal) + parseFloat(cent1);
+            optionOneFixTotal = rounding(optionOneFixTotal);
+            var splitBetween = (parseFloat(optionOneFixTotal) / parseInt(splitInput));
             splitBetween = rounding(splitBetween);
+            optionOneTotal = parseInt(splitInput) * parseFloat(splitBetween);
+            optionOneTotal = rounding(optionOneTotal)
+        } else {
+            optionOneTotal = rounding(optionOneTotal)
         }
 
         // option 2 split between for exact pay
+
+        // -------------------------------
+
+
+
+
+
 
 
 
@@ -76,6 +188,10 @@ $(document).ready(function () {
             splitBetween: splitBetween,
             optionOneTotal: optionOneTotal,
             optionTwoTotal: optionTwoTotal,
+            optionTwoSplitA: optionTwoSplitA,
+            optionTwoSplitB: optionTwoSplitB,
+            optionTwoA: optionTwoA,
+            optionTwoB: optionTwoB,
         })
 
     })
@@ -106,7 +222,15 @@ $(document).ready(function () {
         $("#totalBalance").text(snapshot.val().totalBalance);
         $("#splitBetween").text(snapshot.val().splitBetween);
         $("#splitOutputFinal").html(snapshot.val().splitInput);
+
         $("#option1TotalFinal").text(snapshot.val().optionOneTotal);
+        $("#option2TotalFinal").text(snapshot.val().optionTwoTotal);
+
+        $("#optionTwoA").html(snapshot.val().optionTwoA);
+        $("#optionTwoSplitA").text(snapshot.val().optionTwoSplitA);
+        $("#optionTwoB").html(snapshot.val().optionTwoB);
+        $("#optionTwoSplitB").text(snapshot.val().optionTwoSplitB);
+
     })
 
     // var userInput = document.getElementById("userInput");
@@ -151,32 +275,6 @@ $(document).ready(function () {
         split = this.split
         console.log("split between " + split + " people");
     }
-
-
-
-
-    // 100 x % = X
-    // X+100 = Y
-    // Y/# = each 
-    // if then statements to determine equal amounts or 
-
-
-    // pseudo
-    // get all the inputs
-    // get the multipling and dividing of numbers down. the process
-
-    // ** i want to make it live so when you move the numbers move too 
-
-    // validation
-    // if input of number is entered, app already ready to use with preset numbers
-    // preset 10% /// 2 people
-
-    // toggle1 is selected, it needs to wait for number to be inputted first before finishing
-    // reminder that something is missing
-
-
-
-
 
 
 
