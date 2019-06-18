@@ -119,9 +119,7 @@ input[type=range] {
 
 @media screen and (max-width: 992px) {
 
-  .container{
-    transform: scale(1.0);
-  }
+ 
 
   .center {
     top: 0%;
@@ -134,9 +132,9 @@ input[type=range] {
   .card{
     width: 448px;
     height: 536px;
+    margin-bottom: 10px;
   }
 
 
 } 
 
-/* 998 is where it doesnt overlap
