@@ -1,22 +1,14 @@
 body {
-  background-image: linear-gradient(white,#FC8D3E,white, #5AC4C2);
-  
+  background-image: linear-gradient(#FC8D3E,white, #5AC4C2);  
 }
 
-
-
-
 .center {
-
   top: 45%;
   left: 52%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-
   position: relative;
-  
 }
-
 /* range */
 input[type=range] {
     -webkit-appearance: none;
@@ -103,4 +95,48 @@ input[type=range] {
   input[type=range]:focus::-ms-fill-upper {
     background: #5AC4C2;
   }
-  
+
+
+
+
+@media screen and (max-width: 574px) {
+
+  .column {
+    width: 100%;
+  }
+
+  .center {
+    top: 0%;
+    left: 0%;
+    -ms-transform: none;
+    transform: none;
+    position: relative;
+  }
+
+
+
+} 
+
+@media screen and (max-width: 992px) {
+
+  .container{
+    transform: scale(1.0);
+  }
+
+  .center {
+    top: 0%;
+    left: 0%;
+    -ms-transform: none;
+    transform: none;
+    position: relative;
+  }
+
+  .card{
+    width: 448px;
+    height: 536px;
+  }
+
+
+} 
+
+/* 998 is where it doesnt overlap

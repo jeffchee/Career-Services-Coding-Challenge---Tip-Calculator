@@ -16,20 +16,6 @@ $(document).ready(function () {
     var tipInput = "";
     var splitInput = "";
 
-    $("#customSwitch").on("click", function () {
-        var x = document.getElementById("newUserInputs");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-            $("#prac").empty();
-        } else {
-            x.style.display = "none";
-            // addingNewUserInput();
-        }
-
-    })
-
-
-
 
 
     $("#addTip").on("click", function () {
@@ -181,8 +167,39 @@ $(document).ready(function () {
     })
 
 
+    // $("#customSwitch").on("click", function () {
+    //     var x = document.getElementById("newUserInputs");
+    //     if (x.style.display === "none") {
+    //         x.style.display = "block";
+    //         $("#prac").empty();
+    //     } else {
+    //         x.style.display = "none";
+    //         // addingNewUserInput();
+    //     }
+
+    // })
+
+    // function addingNewUserInput() {
+    //     var tipInput = "";
+    //     var splitInput = "";
+
+    //     var y = document.createElement("p");
+    //     y.innerHTML = "Tip Percentage";
+    //     document.getElementById("prac").appendChild(y)
+
+    //     var x = document.createElement("INPUT");
+    //     x.setAttribute("type", "number");
+    //     x.setAttribute("value", this);
+    //     x.setAttribute("id", tipInput)
+    //     document.getElementById("prac").appendChild(x);
+    //     console.log("it registered");
+    //     console.log(tipInput);
 
 
+
+
+
+    
     // function option2 (TB, splitBetween){
     //     for (var i = splitBetween; splitBetween>0; i--) {
 

@@ -26,12 +26,12 @@ lorange - #F6BF64
   <div class="center">
    
 
-    <div class="container" style="transform: scale(1.1);" >
+    <div class="container" >
         <hr class="my-2">
       <div class="row">
 
         <div class="col-sm-6 ">
-          <div class="card mx-auto" style="width: 30rem; border: 6px solid black">
+          <div class="card" style="width: 30rem; border: 6px solid black; height: 570px; width: 480px;">
             <img src="./image/Foodimage.jpg" class="card-img-top" alt="...">
             <span style="text-align: center; margin:5px">Tip Calculator</span>
 
@@ -50,7 +50,10 @@ lorange - #F6BF64
 
                   <!-- added tipChange variable to when toggle on or off can adjust to new format -->
 
-                  
+                  <div class="custom-control custom-switch" style="border: 2px solid#F4332A">
+                    <input type="checkbox" class="custom-control-input " id="customSwitch">
+                    <label class="custom-control-label" for="customSwitch">Custom Inputs</label>
+                  </div>
                   
                   <div class="container">
                     <div class="row">
@@ -94,11 +97,12 @@ lorange - #F6BF64
         </div>
       </div>
 
-      <div class="col-sm-5">
+      <div class="col-sm-5 column">
         
         <div class="container" style="margin-bottom:14px; ">
-          <div class="card" style="border: 6px solid black">
-            <div class="card-header" style="background-color:FC8D3E; color:white">
+          <div class="card" style="border: 6px solid black; height: 536px; width: 448px;">
+
+            <div class="card-header" style="background-color:5AC4C2; color:white">
               Featured
             </div>
             <div class="d-flex bd-highlight">
@@ -114,10 +118,9 @@ lorange - #F6BF64
               <div class="p-2 bd-highlight "><span id="splitOutputFeature"></span> People</div>
             </div>
 
-            <div class="card-header" style="background-color: 5AC4C2; color:white">
+            <div class="card-header" style="background-color: FC8D3E; color:white">
               Balance
             </div>
-
             <div class="d-flex bd-highlight">
               <div class="p-2 flex-grow-1 bd-highlight">Total Tax Balance</div>
 
@@ -128,10 +131,10 @@ lorange - #F6BF64
 
               <div class="p-2 bd-highlight">$<span id="totalBalance"></span></div>
             </div>
+
             <div class="card-header" style="background-color: F4332A; color:white">
               Each Pay
             </div>
-
             <div class="d-flex bd-highlight">
               <div class="p-2 flex-grow-1 bd-highlight">Option 1 (Equal Pay/Round Up)</div>
               <div class="p-2 bd-highlight">
@@ -148,9 +151,7 @@ lorange - #F6BF64
                 $ <span id="option1TotalFinal"></span>
               </div>
             </div>
-
             <hr class="my-2" style="background-color: F6BF64">
-
             <div class="d-flex bd-highlight">
               <div class="p-2 flex-grow-1 bd-highlight">Option 2 (Exact)</div>
               <div class="p-2 bd-highlight">
@@ -166,7 +167,6 @@ lorange - #F6BF64
                 $<span id="optionTwoSplitA"></span>
               </div>
             </div>
-
             <div class="d-flex bd-highlight">
               <div class="p-2 flex-grow-1 bd-highlight">Option 2 Total Balance</div>
               <div class="p-2 bd-highlight">
@@ -176,7 +176,7 @@ lorange - #F6BF64
 
           </div>
 
-          <div id="splitOutputBetween"></div>
+          
           <!-- button layout  to show how much how many people need to pay or same amount  -->
           <!-- idea -->
 
