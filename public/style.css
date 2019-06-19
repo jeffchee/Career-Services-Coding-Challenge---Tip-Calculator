@@ -4,7 +4,9 @@ body {
 background-size:cover;
 }
 
-
+.center {
+  margin-top: 100px;
+}
 
 /* range */
 input[type=range] {
@@ -121,7 +123,7 @@ input[type=range] {
   }
 
   .center {
-    margin: 0;
+    margin-top: 100px;
     position: absolute;
     top: 67%;
     left: 50%;
