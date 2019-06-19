@@ -12,21 +12,58 @@ $(document).ready(function () {
 
     var database = firebase.database();
 
-    var userInput = "";
-    var tipInput = "";
-    var splitInput = "";
 
 
+
+
+
+    $("#customSwitch").on("click", function (a, b) {
+        var x = document.getElementById("newUserInputs");
+        var y = document.getElementById("customS")
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
+
+        }
+
+    })
 
     $("#addTip").on("click", function () {
 
+        userInput = "";
+        tipInput = "";
+        splitInput = "";
+
         userInput = $("#userInput").val().trim();
-        tipInput = $("#tipInput").val().trim();
-        splitInput = $("#splitInput").val().trim();
+
+        // range
+        var rangeTip = document.getElementById("tipInput").value;
+        var rangeSplit = document.getElementById("splitInput").value;
+        var replaceTI = document.getElementById("replaceTipInput").value;
+        var replaceSI = document.getElementById("replaceSplitInput").value;
+
+        if (replaceTI > 0) {
+            tipInput = replaceTI;
+        } else {
+            tipInput = rangeTip;
+        }
+
+        if (replaceSI > 0) {
+            splitInput = replaceSI;
+        } else {
+            splitInput = rangeSplit;
+        }
+        console.log(userInput);
+        console.log(tipInput);
+        console.log(splitInput);
+
         totalTaxOutput = "";
         totalBalance = "";
         splitBetween = "";
-        
         optionOneTotal = "";
         optionTwoTotal = "";
         optionTwoA = "";
@@ -54,23 +91,19 @@ $(document).ready(function () {
         console.log(splitBetween);
 
         optionOneTotal = parseInt(splitInput) * parseFloat(splitBetween);
-
         console.log(optionOneTotal)
 
         // cannot round here because otherwise it will defeat the purpose of trying to see if the totalbalance and the optionOneTotal is different or not.
 
         // bug fix for option 1 equal pay rounding up
         // --------------------------------------------------can make this a function for checking to make it clearer
-// --
-       
-
+        // --
         if (totalBalance % splitInput === 0) {
             var optionTwoA = splitInput;
             var optionTwoSplitA = splitBetween;
             var optionTwoB = 0;
             var optionTwoSplitB = 0;
 
-            
         } else {
 
             var balance = splitInput * splitBetween;
@@ -102,7 +135,7 @@ $(document).ready(function () {
                 console.log(difference);
                 var number = parseFloat(difference) * 100;
                 console.log(number);
-                
+
                 var optionTwoA = parseInt(number);
                 var optionTwoSplitA = parseFloat(splitBetween) + 0.01;
                 optionTwoSplitA = rounding(optionTwoSplitA);
@@ -111,7 +144,7 @@ $(document).ready(function () {
                 optionTwoSplitB = rounding(optionTwoSplitB);
                 console.log("running else");
 
-                if (optionTwoB ===0){
+                if (optionTwoB === 0) {
                     optionTwoSplitB = 0;
                 }
             }
@@ -142,13 +175,6 @@ $(document).ready(function () {
 
         // -------------------------------
 
-
-
-
-
-
-
-
         firebase.database().ref().set({
             userInput: userInput,
             tipInput: tipInput,
@@ -166,18 +192,6 @@ $(document).ready(function () {
 
     })
 
-
-    // $("#customSwitch").on("click", function () {
-    //     var x = document.getElementById("newUserInputs");
-    //     if (x.style.display === "none") {
-    //         x.style.display = "block";
-    //         $("#prac").empty();
-    //     } else {
-    //         x.style.display = "none";
-    //         // addingNewUserInput();
-    //     }
-
-    // })
 
     // function addingNewUserInput() {
     //     var tipInput = "";
@@ -199,7 +213,7 @@ $(document).ready(function () {
 
 
 
-    
+
     // function option2 (TB, splitBetween){
     //     for (var i = splitBetween; splitBetween>0; i--) {
 
@@ -211,6 +225,26 @@ $(document).ready(function () {
 
     //     }
     // }
+
+
+
+    var inputs = document.querySelectorAll("input,select");
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener("keypress", function (e) {
+            if (e.which == 13) {
+                e.preventDefault();
+                var nextInput = document.querySelectorAll('[tabIndex="' + (this.tabIndex + 1) + '"]');
+                if (nextInput.length === 0) {
+                    nextInput = document.querySelectorAll('[tabIndex="1"]');
+                }
+                nextInput[0].focus();
+            }
+        })
+    }
+
+
+
+
 
 
     // need to find out the way to split and roundup for the figures and to make it display the number of people and ammount each people should owe.
@@ -234,6 +268,15 @@ $(document).ready(function () {
 
     })
 
+
+
+
+
+
+
+
+    // displayign the value on the range
+
     // var userInput = document.getElementById("userInput");
 
     var tipInput = document.getElementById("tipInput");
@@ -253,29 +296,24 @@ $(document).ready(function () {
     console.log(splitInputValue);
     console.log(userInputValue);
 
-    tipOutput.innerHTML = tipInputValue;
-    splitOutput.innerHTML = splitInputValue;
 
     // when user changes the range , the numbers will change
-
-
-
-    var tip = "";
-    var split = "";
-
     tipInput.oninput = function () {
         tipOutput.innerHTML = this.value;
-        this.tip = tipOutput.innerHTML;
-        tip = this.tip
+        tip = tipOutput.innerHTML;
         console.log("tip percentage is :" + tip);
     }
 
     splitInput.oninput = function () {
         splitOutput.innerHTML = this.value;
-        this.split = splitOutput.innerHTML;
-        split = this.split
+        split = splitOutput.innerHTML;
         console.log("split between " + split + " people");
     }
+
+    tipOutput.innerHTML = tipInputValue;
+    splitOutput.innerHTML = splitInputValue;
+
+
 
 
 

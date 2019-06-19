@@ -43,7 +43,7 @@ lorange - #F6BF64
                       <span class="input-group-text ">$</span>
                     </div>
                     <input type="number" class="form-control input-group-lg" id="userInput" step="0.01"
-                      aria-label="Amount">
+                      aria-label="Amount" tabindex="1">
                   </div>
 
                   <!-- added tipChange variable to when toggle on or off can adjust to new format -->
@@ -53,13 +53,32 @@ lorange - #F6BF64
                     <label class="custom-control-label" for="customSwitch">Custom Inputs</label>
                   </div>
 
-                  <div class="container">
+                  <div class="container" id="customS" style="display:none">
+                    <div class="row">
+                        <div class="container" style="margin-left: 20px">
+                            <P style="margin:0">Tip Percentage Input (ex: 15 = %15)</P>
+
+                            <input type="number" class="form-control input-group-lg" id="replaceTipInput" step="1" value =""
+                              aria-label="Amount" tabindex="2" style="width: 40%">
+                          </div>
+                    </div>
+                    <div class="row">
+                      <div class="container" style="margin-left: 20px">
+                        <P style="margin:0">Split Between (ex: 2 = 2 People)</P>
+
+                        <input type="number" class="form-control input-group-lg" id="replaceSplitInput" step="1" value=""
+                          aria-label="Amount" tabindex="3" style="width: 40%">
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="container" id="newUserInputs">
                     <div class="row">
                       <label for="customRange3" style="margin:5px; margin-left:14px;">Tip Percentage</label>
-                      <div class="col-10 tipChange">
+                      <div class="col-10">
 
                         <input type="range" class="custom-range form-control" min="0" max="40" step="0.5" id="tipInput"
-                          style="margin-bottom: 8px;">
+                          style="margin-bottom: 8px;" tabindex="2">
 
                       </div>
                       <div class="col-2">
@@ -74,7 +93,7 @@ lorange - #F6BF64
                       <label for="customRange3" style="margin:5px; margin-left:14px;">Split between</label>
                       <div class="col-10 ">
                         <input type="range" class="custom-range form-control " min="1" max="20" value="2" step="1"
-                          id="splitInput" style="margin-bottom: 8 px">
+                          id="splitInput" style="margin-bottom: 8 px" tabindex="3">
                       </div>
                       <div class="col-2">
                         <div id="splitOutput"></div>
@@ -84,9 +103,11 @@ lorange - #F6BF64
 
                     <!-- <button type="button" onclick="alert('Hello world!')"><i class="fa fa-trash"></i></button> -->
 
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="addTip"
-                      style="background-color: #F6BF64; border-color:black; margin-top:7px">Block level button</button>
+
                   </div>
+                  <button type="submit" class="btn btn-primary btn-lg btn-block" id="addTip"
+                    style="background-color: #F6BF64; border-color:black; margin-top:7px" tabindex="4">Block level
+                    button</button>
                 </div>
               </form>
               <!-- must add round up or tell one to pay a little more //js-->
