@@ -95,12 +95,7 @@ input[type=range] {
     background: #5AC4C2;
   }
 
-
-
-
 @media screen and (max-width:  462px) {
-
- 
 
   .card {
     width: 100%;

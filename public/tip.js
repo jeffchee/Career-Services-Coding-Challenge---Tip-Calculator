@@ -10,13 +10,6 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
 
-    var database = firebase.database();
-
-
-
-
-
-
     $("#customSwitch").on("click", function (a, b) {
         var x = document.getElementById("newUserInputs");
         var y = document.getElementById("customS")
@@ -192,42 +185,6 @@ $(document).ready(function () {
 
     })
 
-
-    // function addingNewUserInput() {
-    //     var tipInput = "";
-    //     var splitInput = "";
-
-    //     var y = document.createElement("p");
-    //     y.innerHTML = "Tip Percentage";
-    //     document.getElementById("prac").appendChild(y)
-
-    //     var x = document.createElement("INPUT");
-    //     x.setAttribute("type", "number");
-    //     x.setAttribute("value", this);
-    //     x.setAttribute("id", tipInput)
-    //     document.getElementById("prac").appendChild(x);
-    //     console.log("it registered");
-    //     console.log(tipInput);
-
-
-
-
-
-
-    // function option2 (TB, splitBetween){
-    //     for (var i = splitBetween; splitBetween>0; i--) {
-
-    //         if(TB%i===0){
-    //             var 
-    //         } else {
-    //             return error;
-    //         }
-
-    //     }
-    // }
-
-
-
     var inputs = document.querySelectorAll("input,select");
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener("keypress", function (e) {
@@ -241,10 +198,6 @@ $(document).ready(function () {
             }
         })
     }
-
-
-
-
 
 
     // need to find out the way to split and roundup for the figures and to make it display the number of people and ammount each people should owe.
@@ -267,12 +220,6 @@ $(document).ready(function () {
         $("#optionTwoSplitB").text(snapshot.val().optionTwoSplitB);
 
     })
-
-
-
-
-
-
 
 
     // displayign the value on the range
@@ -312,9 +259,5 @@ $(document).ready(function () {
 
     tipOutput.innerHTML = tipInputValue;
     splitOutput.innerHTML = splitInputValue;
-
-
-
-
 
 })
