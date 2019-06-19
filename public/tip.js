@@ -10,7 +10,8 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
 
-    $("#customSwitch").on("click", function (a, b) {
+    // switch for different inputs. both are shown in HTML but one is hidden from start.
+    $("#customSwitch").on("click", function () {
         var x = document.getElementById("newUserInputs");
         var y = document.getElementById("customS")
 
@@ -20,7 +21,6 @@ $(document).ready(function () {
         } else {
             x.style.display = "none";
             y.style.display = "block";
-
         }
 
     })
@@ -33,7 +33,6 @@ $(document).ready(function () {
 
         userInput = $("#userInput").val().trim();
 
-        // range
         var rangeTip = document.getElementById("tipInput").value;
         var rangeSplit = document.getElementById("splitInput").value;
         var replaceTI = document.getElementById("replaceTipInput").value;
@@ -185,6 +184,8 @@ $(document).ready(function () {
 
     })
 
+// ---------------------------------------------------------
+// this is for mobile devices when they click enter, it does not immediately submit//
     var inputs = document.querySelectorAll("input,select");
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener("keypress", function (e) {
@@ -199,8 +200,6 @@ $(document).ready(function () {
         })
     }
 
-
-    // need to find out the way to split and roundup for the figures and to make it display the number of people and ammount each people should owe.
 
     firebase.database().ref().on("value", function (snapshot) {
         $("#userOutputFeature").html(snapshot.val().userInput);
