@@ -124,6 +124,7 @@ input[type=range] {
 
   .center {
     margin-top: 100px;
+    margin-left: 3px;
     position: absolute;
     top: 67%;
     left: 50%;
