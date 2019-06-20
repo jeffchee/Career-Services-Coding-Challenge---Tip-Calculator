@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+ 
     var config = {
         apiKey: "AIzaSyCweVwtNwaWEU-cdT3IIkwKEi06VP3Za0o",
         authDomain: "tip-calculator-a3e46.firebaseapp.com",

@@ -16,6 +16,7 @@
   "bugs": {
     "url": "https://github.com/jeffchee/Career-Services-Coding-Challenge---Tip-Calculator/issues"
   },
+  
   "homepage": "https://github.com/jeffchee/Career-Services-Coding-Challenge---Tip-Calculator#readme",
   "dependencies": {
     "express": "^4.16.4",
