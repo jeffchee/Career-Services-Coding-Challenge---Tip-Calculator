@@ -1,5 +1,5 @@
 $(document).ready(function () {
- 
+
     var config = {
         apiKey: "AIzaSyCweVwtNwaWEU-cdT3IIkwKEi06VP3Za0o",
         authDomain: "tip-calculator-a3e46.firebaseapp.com",
@@ -7,22 +7,13 @@ $(document).ready(function () {
         projectId: "tip-calculator-a3e46",
         storageBucket: "tip-calculator-a3e46.appspot.com",
     }
-
     firebase.initializeApp(config);
 
-    // switch for different inputs. both are shown in HTML but one is hidden from start.
-    $("#customSwitch").on("click", function () {
-        var x = document.getElementById("newUserInputs");
-        var y = document.getElementById("customS")
+    var database = firebase.database();
 
-        if (x.style.display === "none") {
-            x.style.display = "block";
-            y.style.display = "none";
-        } else {
-            x.style.display = "none";
-            y.style.display = "block";
-        }
-    })
+    function rounding(x) {
+        return x.toFixed(2);
+    }
 
     $("#solve").on("click", function () {
 
@@ -55,51 +46,124 @@ $(document).ready(function () {
         totalTaxOutput = "";
         totalBalance = "";
         splitBetween = "";
-        optionOneTotal = "";
         optionTwoTotal = "";
-        optionTwoA = "";
-        optionTwoB = "";
-        optionTwoSplitA = "";
-        optionTwoSplitB = "";
 
-        function rounding(x) {
-            return x.toFixed(2);
-        }
+        var optionOneTotal;
+        var newSplitBetween="";
+
+        var optionTwoA;
+        var optionTwoB;
+        var optionTwoSplitA;
+        var optionTwoSplitB;
+
 
         totalTaxOutput = parseFloat(userInput) * (parseFloat(tipInput) / (100));
         totalTaxOutput = rounding(totalTaxOutput);
-        console.log(totalTaxOutput);
+        console.log("totalTaxOutput:" + totalTaxOutput);
 
         totalBalance = parseFloat(userInput) + parseFloat(totalTaxOutput);
         totalBalance = rounding(totalBalance);
-        console.log(totalBalance);
+        console.log("totalBalance:" + totalBalance);
 
         var optionTwoTotal = totalBalance;
+        console.log("optionTwoTotal:" + optionTwoTotal)
 
         splitBetween = (parseFloat(totalBalance) / parseInt(splitInput));
         splitBetween = rounding(splitBetween);
-        splitBetween = splitBetween
-        console.log(splitBetween);
+        console.log("splitBetween:" + splitBetween);
 
-        optionOneTotal = parseInt(splitInput) * parseFloat(splitBetween);
-        console.log(optionOneTotal)
 
-        // cannot round here because otherwise it will defeat the purpose of trying to see if the totalbalance and the optionOneTotal is different or not.
+        checking1(totalBalance, splitInput, splitBetween);
+        checking2(userInput, tipInput, splitInput, totalTaxOutput, totalBalance, splitBetween);
 
-        // bug fix for option 1 equal pay rounding up
-        // --------------------------------------------------can make this a function for checking to make it clearer
-        // --
+        firebase.database().ref().set({
+            userInput: userInput,
+            tipInput: tipInput,
+            splitInput: splitInput,
+            totalTaxOutput: totalTaxOutput,
+            totalBalance: totalBalance,
+            splitBetween: splitBetween,
+            optionTwoTotal: optionTwoTotal,
+            newSplitBetween: newSplitBetween,
+            optionOneTotal: optionOneTotal,
+            optionTwoSplitA: optionTwoSplitA,
+            optionTwoSplitB: optionTwoSplitB,
+            optionTwoA: optionTwoA,
+            optionTwoB: optionTwoB,
+        })
+
+
+    })
+
+
+
+    function checking1(totalBalance, splitInput, splitBetween) {
+
+        var TB = totalBalance;
+        var SI = splitInput;
+        var SB = splitBetween;
+
+        var cent1 = (parseFloat(SI) / 100);
+        var newSplitBetween = "";
+        var optionOneTotal = "";
+
+        console.log(TB, SI, SB, cent1 + " checking1")
+
+        newOptionOneTotal = parseInt(SI) * parseFloat(SB);
+        console.log("newOptionOneTotal:" + newOptionOneTotal);
+
+
+        if (TB > newOptionOneTotal) {
+            console.log("fixing optionOneTotal")
+            var optionOneFixTotal = parseFloat(newOptionOneTotal) + parseFloat(cent1);
+            optionOneFixTotal = rounding(optionOneFixTotal);
+
+            var newSplitBetween = (parseFloat(optionOneFixTotal) / parseInt(SI));
+            newSplitBetween = rounding(newSplitBetween);
+
+            optionOneTotal = parseInt(splitInput) * parseFloat(newSplitBetween);
+            optionOneTotal = rounding(optionOneTotal);
+            console.log("optionOneTotal if :" + optionOneTotal + " " + "newSplitBetween: " + newSplitBetween);
+
+
+        } else {
+            optionOneTotal = rounding(newOptionOneTotal);
+            newSplitBetween = splitBetween;
+            console.log("optionOneTotal else :" + optionOneTotal + " " + "newSplitBetween: " + newSplitBetween);
+
+        }
+
+        return firebase.database().ref().update({
+            optionOneTotal: optionOneTotal,
+            newSplitBetween: newSplitBetween
+        });
+    }
+
+
+
+
+    function checking2(userInput, tipInput, splitInput, totalTaxOutput, totalBalance, splitBetween) {
+
+        var UI = userInput;
+        var TI = tipInput;
+        var SI = splitInput;
+        var TTO = totalTaxOutput;
+        var TB = totalBalance;
+        var SB = splitBetween;
+
+        console.log(UI, TI, SI, TTO, TB, SB)
+
         if (totalBalance % splitInput === 0) {
-            var optionTwoA = splitInput;
-            var optionTwoSplitA = splitBetween;
+            var optionTwoA = SI;
+            var optionTwoSplitA = SB;
             var optionTwoB = 0;
             var optionTwoSplitB = 0;
 
         } else {
 
-            var balance = splitInput * splitBetween;
+            var balance = SI * SB;
 
-            if (totalBalance > balance) {
+            if (TB > balance) {
 
                 var difference = totalBalance - balance;
                 difference = rounding(difference);
@@ -147,44 +211,69 @@ $(document).ready(function () {
         console.log("optionTwoB = " + optionTwoB)
         console.log("optionTwoSplitB = " + optionTwoSplitB)
 
+        // return firebase.database().ref().update({
+        //     optionTwoSplitA: optionTwoSplitA,
+        //     optionTwoSplitB: optionTwoSplitB,
+        //     optionTwoA: optionTwoA,
+        //     optionTwoB: optionTwoB,
+        // });
+    }
 
-        var cent1 = (parseFloat(splitInput) / 100);
 
-        if (totalBalance > optionOneTotal) {
-            console.log("fixing optionOneTotal")
-            var optionOneFixTotal = parseFloat(optionOneTotal) + parseFloat(cent1);
-            optionOneFixTotal = rounding(optionOneFixTotal);
-            var splitBetween = (parseFloat(optionOneFixTotal) / parseInt(splitInput));
-            splitBetween = rounding(splitBetween);
-            optionOneTotal = parseInt(splitInput) * parseFloat(splitBetween);
-            optionOneTotal = rounding(optionOneTotal)
-        } else {
-            optionOneTotal = rounding(optionOneTotal)
-        }
 
-        // option 2 split between for exact pay
 
-        // -------------------------------
 
-        firebase.database().ref().set({
-            userInput: userInput,
-            tipInput: tipInput,
-            splitInput: splitInput,
-            totalTaxOutput: totalTaxOutput,
-            totalBalance: totalBalance,
-            splitBetween: optionTwoSplitA,
-            optionOneTotal: optionOneTotal,
-            optionTwoTotal: optionTwoTotal,
-            optionTwoSplitA: optionTwoSplitA,
-            optionTwoSplitB: optionTwoSplitB,
-            optionTwoA: optionTwoA,
-            optionTwoB: optionTwoB,
-        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    firebase.database().ref().on("value", function (snapshot) {
+        $("#userOutputFeature").html(snapshot.val().userInput);
+        $("#tipOutputFeature").html(snapshot.val().tipInput);
+        $("#splitOutputFeature").html(snapshot.val().splitInput);
+
+        $("#totalTaxOutput").text(snapshot.val().totalTaxOutput);
+        $("#totalBalance").text(snapshot.val().totalBalance);
+
+        $("#newSplitBetween").text(snapshot.val().newSplitBetween);
+        $("#splitOutputFinal").html(snapshot.val().splitInput);
+
+        $("#option1TotalFinal").text(snapshot.val().optionOneTotal);
+
+        $("#option2TotalFinal").text(snapshot.val().optionTwoTotal);
+
+        $("#optionTwoA").html(snapshot.val().optionTwoA);
+        $("#optionTwoSplitA").text(snapshot.val().optionTwoSplitA);
+        $("#optionTwoB").html(snapshot.val().optionTwoB);
+        $("#optionTwoSplitB").text(snapshot.val().optionTwoSplitB);
 
     })
 
-// ---------------------------------------------------------
-// this is for mobile devices when they click enter, it does not immediately submit//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     var inputs = document.querySelectorAll("input,select");
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener("keypress", function (e) {
@@ -200,24 +289,7 @@ $(document).ready(function () {
     }
 
 
-    firebase.database().ref().on("value", function (snapshot) {
-        $("#userOutputFeature").html(snapshot.val().userInput);
-        $("#tipOutputFeature").html(snapshot.val().tipInput);
-        $("#splitOutputFeature").html(snapshot.val().splitInput);
-        $("#totalTaxOutput").text(snapshot.val().totalTaxOutput);
-        $("#totalBalance").text(snapshot.val().totalBalance);
-        $("#splitBetween").text(snapshot.val().splitBetween);
-        $("#splitOutputFinal").html(snapshot.val().splitInput);
 
-        $("#option1TotalFinal").text(snapshot.val().optionOneTotal);
-        $("#option2TotalFinal").text(snapshot.val().optionTwoTotal);
-
-        $("#optionTwoA").html(snapshot.val().optionTwoA);
-        $("#optionTwoSplitA").text(snapshot.val().optionTwoSplitA);
-        $("#optionTwoB").html(snapshot.val().optionTwoB);
-        $("#optionTwoSplitB").text(snapshot.val().optionTwoSplitB);
-
-    })
 
 
     // displayign the value on the range
@@ -258,4 +330,9 @@ $(document).ready(function () {
     tipOutput.innerHTML = tipInputValue;
     splitOutput.innerHTML = splitInputValue;
 
-})
+
+
+
+
+
+});

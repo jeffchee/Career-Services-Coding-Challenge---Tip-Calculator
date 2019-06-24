@@ -16,10 +16,10 @@
   "bugs": {
     "url": "https://github.com/jeffchee/Career-Services-Coding-Challenge---Tip-Calculator/issues"
   },
-  
   "homepage": "https://github.com/jeffchee/Career-Services-Coding-Challenge---Tip-Calculator#readme",
   "dependencies": {
     "express": "^4.16.4",
+    "firebase-admin": "^8.2.0",
     "path": "^0.12.7"
   }
 }
