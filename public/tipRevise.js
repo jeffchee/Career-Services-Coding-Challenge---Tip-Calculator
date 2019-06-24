@@ -15,6 +15,19 @@ $(document).ready(function () {
         return x.toFixed(2);
     }
 
+    $("#customSwitch").on("click", function () {
+        var x = document.getElementById("newUserInputs");
+        var y = document.getElementById("customS")
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } else {
+            x.style.display = "none";
+            y.style.display = "block";
+        }
+    })
+
     $("#solve").on("click", function () {
 
         userInput = "";
@@ -48,13 +61,13 @@ $(document).ready(function () {
         splitBetween = "";
         optionTwoTotal = "";
 
-        var optionOneTotal;
+        var optionOneTotal="";
         var newSplitBetween="";
 
-        var optionTwoA;
-        var optionTwoB;
-        var optionTwoSplitA;
-        var optionTwoSplitB;
+        var optionTwoA="";
+        var optionTwoB="";
+        var optionTwoSplitA="";
+        var optionTwoSplitB="";
 
 
         totalTaxOutput = parseFloat(userInput) * (parseFloat(tipInput) / (100));
@@ -153,7 +166,7 @@ $(document).ready(function () {
 
         console.log(UI, TI, SI, TTO, TB, SB)
 
-        if (totalBalance % splitInput === 0) {
+        if (TB % SI === 0) {
             var optionTwoA = SI;
             var optionTwoSplitA = SB;
             var optionTwoB = 0;
@@ -173,18 +186,20 @@ $(document).ready(function () {
                 console.log(number);
                 // whatever the number will be will be the one that is going to need that 1 cent
                 var optionTwoA = parseInt(number);
-                var optionTwoSplitA = parseFloat(splitBetween) + 0.01;
+                var optionTwoSplitA = parseFloat(SB) + 0.01;
                 optionTwoSplitA = rounding(optionTwoSplitA);
-                var optionTwoB = parseInt(splitInput) - parseInt(optionTwoA);
-                var optionTwoSplitB = parseFloat(splitBetween);
+
+                var optionTwoB = parseInt(SI) - parseInt(optionTwoA);
+                var optionTwoSplitB = parseFloat(SB);
                 optionTwoSplitB = rounding(optionTwoSplitB);
                 console.log("running if");
 
-
             } else {
-                var splitBetween = parseFloat(splitBetween) - 0.01;
-                var balance = splitInput * splitBetween;
-                var difference = totalBalance - balance;
+
+                var SB = parseFloat(SB) - 0.01;
+                var balance = SI * SB;
+
+                var difference = TB - balance;
                 difference = rounding(difference);
 
                 console.log(difference);
@@ -192,10 +207,11 @@ $(document).ready(function () {
                 console.log(number);
 
                 var optionTwoA = parseInt(number);
-                var optionTwoSplitA = parseFloat(splitBetween) + 0.01;
+                var optionTwoSplitA = parseFloat(SB) + 0.01;
                 optionTwoSplitA = rounding(optionTwoSplitA);
-                var optionTwoB = parseInt(splitInput) - parseInt(optionTwoA);
-                var optionTwoSplitB = parseFloat(splitBetween);
+
+                var optionTwoB = parseInt(SI) - parseInt(optionTwoA);
+                var optionTwoSplitB = parseFloat(SB);
                 optionTwoSplitB = rounding(optionTwoSplitB);
                 console.log("running else");
 
@@ -211,12 +227,12 @@ $(document).ready(function () {
         console.log("optionTwoB = " + optionTwoB)
         console.log("optionTwoSplitB = " + optionTwoSplitB)
 
-        // return firebase.database().ref().update({
-        //     optionTwoSplitA: optionTwoSplitA,
-        //     optionTwoSplitB: optionTwoSplitB,
-        //     optionTwoA: optionTwoA,
-        //     optionTwoB: optionTwoB,
-        // });
+        return firebase.database().ref().update({
+            optionTwoSplitA: optionTwoSplitA,
+            optionTwoSplitB: optionTwoSplitB,
+            optionTwoA: optionTwoA,
+            optionTwoB: optionTwoB,
+        });
     }
 
 
@@ -254,6 +270,7 @@ $(document).ready(function () {
 
         $("#optionTwoA").html(snapshot.val().optionTwoA);
         $("#optionTwoSplitA").text(snapshot.val().optionTwoSplitA);
+
         $("#optionTwoB").html(snapshot.val().optionTwoB);
         $("#optionTwoSplitB").text(snapshot.val().optionTwoSplitB);
 
