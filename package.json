@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/jeffchee/Career-Services-Coding-Challenge---Tip-Calculator#readme",
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "firebase-admin": "^8.2.0",
     "path": "^0.12.7"
   }
