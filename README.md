@@ -1,3 +1,4 @@
 # Career-Services-Coding-Challenge---Tip-Calculator
-Just the tip!
+
+https://jeffchee.github.io/Career-Services-Coding-Challenge---Tip-Calculator/
 
